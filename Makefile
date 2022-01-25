@@ -1,7 +1,7 @@
 BUILD ?= prod
 
 dev:
-	go build -tags dev
+	go build
 	$(MAKE) frontend BUILD=dev
 
 test:
