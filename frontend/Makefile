@@ -15,7 +15,7 @@ EXTERNAL_JS := \
 EXTERNAL_CSS := \
 	node_modules/normalize-css/normalize.css \
 	node_modules/vue-multiselect/dist/vue-multiselect.min.css \
-	node_modules/vue-loading-overlay/dist/vue-loading.min.css
+	node_modules/vue-loading-overlay/dist/vue-loading.css
 
 INTERNAL_JS := \
 	js/util.js \
