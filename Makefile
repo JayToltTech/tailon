@@ -2,7 +2,7 @@ BUILD ?= prod
 
 dev:
 	go build
-	$(MAKE) frontend BUILD=dev
+	$(MAKE) frontend BUILD=prod
 
 test:
 	go test -v
