@@ -98,7 +98,7 @@ const defaultTomlConfig = `
 
     [commands.grep]
     stdin = "tail"
-    action = ["grep", "--text", "--line-buffered", "--color=never", "-e", "$script"]
+    action = ["grep", "--text", "--line-buffered", "--color=never", "-i", "-e", "$script"]
     default = ".*"
 
     [commands.sed]

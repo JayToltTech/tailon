@@ -1,0 +1,39 @@
+  # The <title> of the index page.
+  title = "Tailon file viewer"
+
+  # The root of the web application.
+  relative-root = "/"
+
+  # The addresses to listen on. Can be an address:port combination or an unix socket.
+  listen-addr = ["127.0.0.1:9001"]
+
+  # Allow download of know files (only those matched by a filespec).
+  allow-download = true
+
+  # Commands that will appear in the UI.
+  allow-commands = ["tail", "grep", "sed", "awk"]
+
+  # File, glob and dir filespecs are similar in principle to their
+  # command-line counterparts.
+
+
+  [commands]
+
+    [commands.tail]
+#    action = ["tail", "-n", "$lines", "-F", "$path"]
+    action = ["tail", "-n", "500", "-F", "$path"]
+    [commands.grep]
+    stdin = "tail"
+    action = ["grep", "--text", "--line-buffered", "--color=never", "-i", "-e", "$script"]
+    default = ".*"
+
+    [commands.sed]
+    stdin = "tail"
+    action = ["sed", "-u", "-e", "$script"]
+    default = "s/.*/&/"
+
+    [commands.awk]
+    stdin = "tail"
+    action = ["awk", "--sandbox", "$script"]
+    default = "{print $0; fflush()}"
+
