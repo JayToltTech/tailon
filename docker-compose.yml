@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  tailon:
+    container_name: tailon
+    image: charckle/tailon:latest
+    ports:
+      - "9001:9001"
+    volumes:
+      - "./testdata/ex1/var/log:/tailon/logs_tailon"
+      - "./tailon.toml:/tailon/tailon.toml"
+    command: /tailon/logs_tailon/* -c /tailon/tailon.toml
+    restart: unless-stopped
