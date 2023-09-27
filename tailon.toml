@@ -9,6 +9,10 @@
 
   # Allow download of know files (only those matched by a filespec).
   allow-download = true
+
+  # how many lines of code are displayed at once in the GUI terminal
+  # 0 means all of them
+  lines-of-history = 3001
  
   # Number of lines to innitially show when tailing. If you want ALL of them, you must manually change the tail command, and insert "+1" instead of "$lines" in the conf file 
   lines-to-tail = 103
