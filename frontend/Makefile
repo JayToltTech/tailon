@@ -75,9 +75,11 @@ $(DISTDIR)/main.css: $(INTERNAL_CSS)
 	$(CMD_NODESASS) --quiet scss/main.scss > $@
 endif
 
-# go get -u github.com/shurcooL/vfsgen/cmd/vfsgendev
+# OLD!! go get -u github.com/shurcooL/vfsgen/cmd/vfsgendev
+# go isntall github.com/shurcooL/vfsgen/cmd/vfsgendev
 assets_vfsdata.go:
-	cd .. && /home/anon/go/bin/vfsgendev  -source=\"github.com/gchuf/tailon/frontend\".Assets && mv $@ frontend/
+#	cd .. && /home/anon/go/bin/vfsgendev  -source=\"github.com/gchuf/tailon/frontend\".Assets && mv $@ frontend/
+	cd .. && vfsgendev  -source=\"github.com/gchuf/tailon/frontend\".Assets && mv $@ frontend/
 
 
 .PHONY: all clean watch du assets_vfsdata.go

@@ -20,7 +20,7 @@ var app = new Vue({
         'script': null,
 
         'linesOfHistory': 2000,  // 0 for infinite history
-        'linesToTail': 100,
+        'linesToTail': linesToTail,
         'wrapLines': false,
 
         'hideToolbar': false,

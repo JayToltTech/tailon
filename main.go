@@ -52,6 +52,7 @@ Example usage:
   tailon file1.txt file2.txt file3.txt
   tailon alias=messages,/var/log/messages "/var/log/*.log"
   tailon -b localhost:8080,localhost:8081 -c config.toml
+  tailon testdata/ex1/var/log/* -b localhost:9001 --lines-to-tail 102
 
 For information on usage through the configuration file, please refer to the
 '--help-config' option.
@@ -73,6 +74,9 @@ more configurability than the command-line interface.
   # Allow download of know files (only those matched by a filespec).
   allow-download = true
 
+  # Number of lines to innitially show when tailing. If you want ALL of them, you must manually change the tail command, and insert "+1" instead of "$lines" in the conf file
+  lines-to-tail = 102
+
   # Commands that will appear in the UI.
   allow-commands = ["tail", "grep", "sed", "awk"]
 
@@ -88,6 +92,7 @@ const defaultTomlConfig = `
   title = "Tailon file viewer"
   relative-root = "/"
   listen-addr = [":8080"]
+  lines-to-tail = 100
   allow-download = true
   allow-commands = ["tail", "grep", "sed", "awk"]
 
@@ -202,6 +207,7 @@ type Config struct {
 	ConfigPath        string
 	WrapLinesInitial  bool
 	TailLinesInitial  int
+	LinesToTail       int64
 	AllowCommandNames []string
 	AllowDownload     bool
 
@@ -223,6 +229,7 @@ func makeConfig(configContent string) *Config {
 	config := Config{
 		BindAddr:      addrsB,
 		RelativeRoot:  defaults.Get("relative-root").(string),
+		LinesToTail:   defaults.Get("lines-to-tail").(int64),
 		AllowDownload: defaults.Get("allow-download").(bool),
 		CommandSpecs:  commandSpecs,
 	}
@@ -242,6 +249,7 @@ func main() {
 
 	flag.StringVarP(&config.RelativeRoot, "relative-root", "r", config.RelativeRoot, "webapp relative root")
 	flag.BoolVarP(&config.AllowDownload, "allow-download", "a", config.AllowDownload, "allow file downloads")
+	flag.Int64Var(&config.LinesToTail, "lines-to-tail", config.LinesToTail, "No. of lines to tail.")
 	flag.StringVarP(&config.ConfigPath, "config", "c", "", "")
 	flag.Parse()
 
