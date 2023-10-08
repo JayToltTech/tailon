@@ -5,7 +5,8 @@
   relative-root = "/"
 
   # The addresses to listen on. Can be an address:port combination or an unix socket.
-  listen-addr = ["127.0.0.1:9001"]
+  # listen-addr = ["127.0.0.1:9001"]
+  listen-addr = ["0.0.0.0:9001"]
 
   # Allow download of know files (only those matched by a filespec).
   allow-download = true

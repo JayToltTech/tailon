@@ -22,4 +22,4 @@ COPY --from=build /tailon/tailon /tailon/tailon
 CMD        ["--help"]
 WORKDIR /tailon
 ENTRYPOINT ["./tailon"]
-EXPOSE 8080
+EXPOSE 9001
