@@ -1,12 +1,14 @@
-version: "3.8"
 services:
   tailon:
     container_name: tailon
-    image: charckle/tailon:latest
+    build:
+      context: .
+      tags:
+        - tolttech/tailon
     ports:
-      - "9001:9001"
+      - "8080:8080"
     volumes:
       - "./testdata/ex1/var/log:/tailon/logs_tailon"
       - "./tailon.toml:/tailon/tailon.toml"
-    command: /tailon/logs_tailon/* -c /tailon/tailon.toml
+    command: /tailon/logs_tailon/*
     restart: unless-stopped
