@@ -8,7 +8,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - "./testdata/ex1/var/log:/tailon/logs_tailon"
+      - "/data/syslog-ng/log:/tailon/logs"
       - "./tailon.toml:/tailon/tailon.toml"
-    command: /tailon/logs_tailon/*
+    command: /tailon/logs/messages
     restart: unless-stopped
